@@ -44,9 +44,10 @@ resource "ibm_is_security_group_rule" "PublicIngress1" {
 }
 
 resource "ibm_is_security_group_rule" "PublicIngress22" {
+	for_each = toset(local.InboundIPv4CidrBlocks)
 	group = ibm_is_security_group.PublicSecurityGroup.id
 	direction = "inbound"
-	remote = local.InboundIPv4CidrBlock
+	remote = each.value
 	tcp {
 		port_min = 22
 		port_max = 22
@@ -54,9 +55,10 @@ resource "ibm_is_security_group_rule" "PublicIngress22" {
 }
 
 resource "ibm_is_security_group_rule" "PublicIngress80" {
+	for_each = toset(local.InboundIPv4CidrBlocks)
 	group = ibm_is_security_group.PublicSecurityGroup.id
 	direction = "inbound"
-	remote = local.InboundIPv4CidrBlock
+	remote = each.value
 	tcp {
 		port_min = 80
 		port_max = 80
@@ -64,9 +66,10 @@ resource "ibm_is_security_group_rule" "PublicIngress80" {
 }
 
 resource "ibm_is_security_group_rule" "PublicIngress443" {
+	for_each = toset(local.InboundIPv4CidrBlocks)
 	group = ibm_is_security_group.PublicSecurityGroup.id
 	direction = "inbound"
-	remote = local.InboundIPv4CidrBlock
+	remote = each.value
 	tcp {
 		port_min = 443
 		port_max = 443

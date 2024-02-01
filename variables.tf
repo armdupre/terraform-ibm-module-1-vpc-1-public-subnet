@@ -1,10 +1,6 @@
-variable "InboundIPv4CidrBlock" {
-	type = string
-	description = "IP Address /32 or IP CIDR range connecting inbound to ILU App"
-	validation {
-		condition = length(var.InboundIPv4CidrBlock) >= 9 && length(var.InboundIPv4CidrBlock) <= 18 && can(regex("(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})\\.(\\d{1,3})/(\\d{1,2})", var.InboundIPv4CidrBlock))
-		error_message = "InboundIPv4CidrBlock must be a valid IP CIDR range of the form x.x.x.x/x."
-	}
+variable "InboundIPv4CidrBlocks" {
+	description = "List of IP Addresses /32 or IP CIDR ranges connecting inbound to App"
+	type = list(string)
 }
 
 variable PublicSubnetZone {
@@ -41,6 +37,6 @@ variable "UserProjectTag" {
 }
 
 variable "Version" {
-	default = "demo"
+	default = "2-6"
 	type = string
 }
