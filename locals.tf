@@ -1,6 +1,6 @@
 locals {
 	InboundIPv4CidrBlocks = var.InboundIPv4CidrBlocks
-	Preamble = "${local.UserLoginTag}-${local.Tag}-${local.Version}"
+	Preamble = "${local.UserLoginTag}-${local.UserProjectTag}-${local.Tag}-${local.Version}"
 	PublicSecurityGroupName = "${local.Preamble}-public-security-group"
 	PublicSubnetCidrBlock = "10.0.10.0/24"
 	PublicSubnetName = "${local.Preamble}-public-subnet"
